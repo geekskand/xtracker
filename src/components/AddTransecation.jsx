@@ -1,7 +1,8 @@
-import { useState } from "react"
-import { ADD_TRANSACTION } from "../context/globalstate"
+import { useState ,useContext } from "react"
+import { GlobalContext } from "../context/globalstate"
 
 function AddTransection(){
+    const {add} = useContext(GlobalContext)
 
 
     const [item, setItem] = useState('')
@@ -10,8 +11,7 @@ function AddTransection(){
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        ADD_TRANSACTION({item, amount, date})
-        
+        add({id: Math.floor(Math.random() * 1000000),item, amount, date})
         console.log(item, amount, date)
     }
 
@@ -23,6 +23,12 @@ function AddTransection(){
         <input type="text" placeholder="item" value={item} onChange={(e) => setItem(e.target.value)} ></input>
         <label >Amount</label>
         <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="amount" ></input>
+        <label className="spent-received">
+  <input type="checkbox"  onChange={(e) => setAmount(e.target.checked ? -amount : amount)}></input>
+  <span className="slider"></span>
+</label>
+
+ 
         <label >Date</label>
         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} placeholder="date" ></input>
         <button type="submit" onClick={handleSubmit}>Add Transection</button>

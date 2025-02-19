@@ -3,9 +3,9 @@ import { GlobalContext } from "../context/globalstate"
 
 function IncomeExpenses(){
     const {transactions} = useContext(GlobalContext)
-    const Amount = transactions.map(t => t.amount)
-    const Income = Amount.filter(item => item > 0).reduce((acc, item) => (acc += item), 0).toFixed(2)
-    const Expense = Amount.filter(item => item <0).reduce((acc, item) => (acc += item),0).toFixed(2)
+    const amounts = transactions.map(t => Number(t.amount))
+    const Income = amounts.filter(item => item > 0).reduce((acc, item) => (acc += item), 0).toFixed(2)
+    const Expense = amounts.filter(item => item <0).reduce((acc, item) => (acc += item),0).toFixed(2)
   
 
 

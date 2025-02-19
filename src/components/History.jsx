@@ -1,7 +1,7 @@
 import { GlobalContext } from "../context/globalstate"
 import { useContext } from "react"
 function History(){
-    const {transactions} = useContext(GlobalContext)
+    const {transactions,del} = useContext(GlobalContext)
     console.log(transactions)
     return(
         <>
@@ -10,7 +10,7 @@ function History(){
                 <table className="history-table">
                     {/* Table Header */}
                     <thead>
-                        <tr>
+                        <tr><th></th>
                             <th>Item</th>
                             <th>Amount</th>
                             <th>Date</th>
@@ -22,6 +22,9 @@ function History(){
                         {transactions.length > 0 ? (
                             transactions.map((t) => (
                                 <tr key={t.id}  className={t.amount > 0 ? 'positive' : 'negative'}>
+                                    <td className="deletebtn">
+    <button onClick={() => del(t.id)}>X</button>
+  </td>
                                     <td>{t.item}</td>
                                     <td>{t.amount}</td>
                                     <td>{t.date}</td>

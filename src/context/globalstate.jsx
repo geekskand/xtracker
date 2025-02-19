@@ -14,9 +14,18 @@ export const GlobalContext = createContext(initialState);
 // Provider Component
 export const GlobalProvider = ({ children }) => {  // Fixed "GloablProvider" typo & "Children"
     const [state, dispatch] = useReducer(AppReducer, initialState);
+//Action
+function add(transaction) {
+    dispatch({ type: "ADD_TRANSACTION", payload: transaction });
+}
+
+function del(id) {
+    dispatch({ type: "DELETE_TRANSACTION", payload: id });
+}
+    
 
     return (
-        <GlobalContext.Provider value={{ transactions: state.transactions, dispatch }}>
+        <GlobalContext.Provider value={{ transactions: state.transactions, add, del }}>
             {children}  {/* Fixed children rendering */}
         </GlobalContext.Provider>
     );

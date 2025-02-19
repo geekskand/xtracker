@@ -108,3 +108,28 @@ button:hover{
 .negative {
   border-right: 5px solid red;
 }
+
+
+.deletebtn {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+tr:hover .deletebtn {
+  visibility: visible;
+  opacity: 1;
+}
+
+.deletebtn button {
+  background-color: rgb(225, 18, 18);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.deletebtn button:hover {
+  background-color: red;
+}
